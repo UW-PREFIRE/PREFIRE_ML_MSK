@@ -1,0 +1,59 @@
+{
+"_JSON_COMMENTS_": {
+  "purpose": {"to_describe": "the metadata and form of a NetCDF-format file"},
+  
+  "eg_var": {
+       "units": "cubits/day",
+       "long_name": "an arbitrary example of a data variable",
+       "C_dimensions": ["atrack", "xtrack"],
+       "F_dimensions": ["xtrack", "atrack"],
+       "np_dtype": "float32", "fill_value": -9.999e3,
+       "compression": [4, true] },
+
+  "C_dimensions_are": { "for": "Python, C, C++, etc." },
+  "F_dimensions_are": { "for": "Fortran, MatLab, IDL, etc." },
+  "can_have_either": { "or_both_types": "of dimension definition" },
+  "for_an_unlimited_dimension": { "add_a_prefix_eg": "!U!time" },
+
+  "Global_Attributes": { "group": "can be empty or omitted" },
+  "xxxxx_Group_Attributes": { "group": "can omit/empty, xxxxx is group name" },
+  "eg_value_known_globalgroup_att": { "value": 3.14159 },
+  "eg_value_pending_globalgroup_att": { "value": "!to_be_set!" } 
+},
+
+"Msk_Group_Attributes": {
+    "cldmask_NN_model_paths": {"value": "to_be_set!"}
+},
+
+"Msk": {
+    "cloud_mask": {
+             "long_name": "cloud mask",
+             "description": "cloud mask (NN)",
+             "flag_values": [0, 1, 2, 3, 4],
+             "flag_meanings": "clear, likely clear, uncertain, likely cloud, cloud",
+             "C_dimensions": ["atrack", "xtrack"],
+             "np_dtype": "int8", "fill_value": -99,
+             "compression": [4, true] },
+    "cldmask_probability": {
+             "long_name": "cloud mask probability",
+             "description": "cloud probability from the algorithm based on neural networks (NNs), a continuous fractional value in the range [0-1]",
+             "C_dimensions": ["atrack", "xtrack"],
+             "np_dtype": "float32", "fill_value": -9.999e3,
+             "compression": [4, true] },
+    "msk_quality_flag": {
+             "long_name": "MSK quality flag",
+             "description": "flag specifying the overall quality of the cloud mask determination(s) for each FOV",
+             "flag_values": [0],
+             "flag_meanings": "[0] nominal",
+             "C_dimensions": ["atrack", "xtrack"],
+             "np_dtype": "int8", "fill_value": -99,
+             "compression": [4, true] },
+    "msk_qc_bitflags": {
+             "long_name": "MSK quality-control bitflags",
+             "description": "integer composed of bit flags that contain additional boolean info about the quality of the cloud mask determinations and fields",
+             "value_meaning": "[b0] based on best-quality radiances, [b1] based on uncategorized radiances, [b2] cloud mask determination not attempted due to radiance_quality_flag value",
+             "C_dimensions": ["atrack", "xtrack"],
+             "np_dtype": "uint16",
+             "compression": [4, true] }
+}
+}
